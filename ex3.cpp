@@ -24,7 +24,7 @@ int main()
     int n;
     std::cout << "Enter step-shifting: ";
     std::cin >> n;
-    //сдвиг вправо
+    //shift right
     int* p, t;
     for(p = &m[0][0]; p != &m[N - 1][M]; p += M){
         for(int i = 0; i < n; ++i){
@@ -35,7 +35,7 @@ int main()
         }
     }
     print_matrix;
-    //сдвиг вниз
+    //shift down
     int* e = &m[N - 1][0];
     for(p = &m[0][0]; p != &m[0][M]; ++p, ++e){
         for(int i = 0; i < n; ++i){
