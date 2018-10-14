@@ -1,8 +1,8 @@
 #include <iostream>
 #define print_matrix \
 {\
-    for(int i = 0; i < N; ++i){\
-        for(int j = 0; j < M; ++j)\
+    for(int i=0; i<N; ++i){\
+        for(int j=0; j<M; ++j)\
             std::cout << m[i][j] << ' ';\
         std::cout << std::endl;\
     }\
@@ -25,24 +25,27 @@ int main()
     std::cout << "Enter step-shifting: ";
     std::cin >> n;
     //shift right
-    int* p, t;
-    for(p = &m[0][0]; p != &m[N - 1][M]; p += M){
-        for(int i = 0; i < n; ++i){
-            t = *(p + (M - 1));
-            for(int* r = p + (M - 1); r > p; --r)
-                *r = *(r - 1);
-            *p = t;
+    int*p, t;
+    for(p=&m[0][0]; p!=&m[N-1][M]; p+=M)
+    {
+        for(int i=0; i<n; ++i)
+        {
+            t = *(p+(M-1));
+            for(int* r=p+(M-1); r>p; --r)
+                *r=*(r-1);
+            *p=t;
         }
     }
     print_matrix;
     //shift down
-    int* e = &m[N - 1][0];
-    for(p = &m[0][0]; p != &m[0][M]; ++p, ++e){
-        for(int i = 0; i < n; ++i){
-            t = *e;
-            for(int* r = e; r > p; r -= M)
-                *r = *(r - M);
-            *p = t;
+    int* e=&m[N-1][0];
+    for(p=&m[0][0]; p!=&m[0][M]; ++p, ++e){
+        for(int i=0; i<n; ++i)
+        {
+            t=*e;
+            for(int* r=e; r>p; r-=M)
+                *r=*(r-M);
+            *p=t;
         }
     }
     print_matrix;
