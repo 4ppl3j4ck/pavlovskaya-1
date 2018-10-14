@@ -31,11 +31,11 @@ struct T_circle
     {
         T_point  AB = vect(A, B);
         T_point  AC = vect(A, center_);
-        //Окружность пересекает прямую AB, если в треугольнике ABC, где C - центр окружности,
-        //длина h высоты , опущенной на сторону AB, не больше радиуса данной окружности.
-        //h найдем, разделив удвоенную площадь треугольника ABC на длину отрезка AB.
-        //Удвоенную площадь треугольника ABC найдем как модуль определителя векторов AB и AC.
-        //Итак, пересекает, если h <= R, т.е.
+        //РћРєСЂСѓР¶РЅРѕСЃС‚СЊ РїРµСЂРµСЃРµРєР°РµС‚ РїСЂСЏРјСѓСЋ AB, РµСЃР»Рё РІ С‚СЂРµСѓРіРѕР»СЊРЅРёРєРµ ABC, РіРґРµ C - С†РµРЅС‚СЂ РѕРєСЂСѓР¶РЅРѕСЃС‚Рё,
+        //РґР»РёРЅР° h РІС‹СЃРѕС‚С‹ , РѕРїСѓС‰РµРЅРЅРѕР№ РЅР° СЃС‚РѕСЂРѕРЅСѓ AB, РЅРµ Р±РѕР»СЊС€Рµ СЂР°РґРёСѓСЃР° РґР°РЅРЅРѕР№ РѕРєСЂСѓР¶РЅРѕСЃС‚Рё.
+        //h РЅР°Р№РґРµРј, СЂР°Р·РґРµР»РёРІ СѓРґРІРѕРµРЅРЅСѓСЋ РїР»РѕС‰Р°РґСЊ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР° ABC РЅР° РґР»РёРЅСѓ РѕС‚СЂРµР·РєР° AB.
+        //РЈРґРІРѕРµРЅРЅСѓСЋ РїР»РѕС‰Р°РґСЊ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР° ABC РЅР°Р№РґРµРј РєР°Рє РјРѕРґСѓР»СЊ РѕРїСЂРµРґРµР»РёС‚РµР»СЏ РІРµРєС‚РѕСЂРѕРІ AB Рё AC.
+        //РС‚Р°Рє, РїРµСЂРµСЃРµРєР°РµС‚, РµСЃР»Рё h <= R, С‚.Рµ.
         //2 * S / abs(AB) <= R
         return  abs(AB.real() * AC.imag() - AB.imag() * AC.real()) / abs(AB) <= radius_;
     }
@@ -56,12 +56,12 @@ T_circles  input_circles()
     int  n;
     do
     {
-        cout << "Введите количество окружностей >= 1: ";
+        cout << "Enter the number of circles >= 1: ";
         cin >> n;
     }while(n < 1);
-    cout << "Введите координаты центра и радиусы "
+    cout << "Enter the center coordinates and radiuses of the "
               << n
-              << " окружностей:"
+              << " circles:"
               << endl;
     T_circles  circles;
     do
@@ -94,14 +94,14 @@ T_points  input_points()
     int  n;
     do
     {
-        cout << "Введите количество точек >= 2: ";
+        cout << "Enter the number of points >= 2: ";
         cin >> n;
     }
     while(n < 2);
 
-    cout << "Введите координаты "
+    cout << "Enter the coordinates of the "
               << n
-              << " точек:"
+              << " points:"
               << endl;
     T_points  points;
     do
@@ -132,7 +132,7 @@ void  get_line_intersected_max_circles
     )
 {
     circles_count_max = 0;
-    //Перебираем все пары множества точек.
+    //РџРµСЂРµР±РёСЂР°РµРј РІСЃРµ РїР°СЂС‹ РјРЅРѕР¶РµСЃС‚РІР° С‚РѕС‡РµРє.
     for(T_points::const_iterator  point_it_A = points.begin(); point_it_A != points.end();
         ++ point_it_A)
     {
@@ -144,8 +144,8 @@ void  get_line_intersected_max_circles
                 continue;
             }
             int circles_count_cur = 0;
-            //Перебираем все окружности, и подсчитываем сколько из них пересекает
-            //прямая, проходящая через точки *point_it_A и *point_it_B.
+           //РџРµСЂРµР±РёСЂР°РµРј РІСЃРµ РѕРєСЂСѓР¶РЅРѕСЃС‚Рё, Рё РїРѕРґСЃС‡РёС‚С‹РІР°РµРј СЃРєРѕР»СЊРєРѕ РёР· РЅРёС… РїРµСЂРµСЃРµРєР°РµС‚
+            //РїСЂСЏРјР°СЏ, РїСЂРѕС…РѕРґСЏС‰Р°СЏ С‡РµСЂРµР· С‚РѕС‡РєРё *point_it_A Рё *point_it_B.
             for(T_circles::const_iterator  circle_it = circles.begin();
                 circle_it != circles.end(); ++circle_it)
             {
@@ -173,12 +173,12 @@ int main()
     T_point  B;
     int circles_count_max = 0;
     get_line_intersected_max_circles(circles, points, A, B, circles_count_max);
-    cout << "Прямая, проведенная через точки "
+    cout << "Line drawn through points "
               << A
-              << " и "
+              << " and "
               << B
               << endl
-              << " пересекает максимально возможное количество окружностей: "
+              << " intersects as max circles as possible: "
               << circles_count_max
               << endl;
     return 0;
