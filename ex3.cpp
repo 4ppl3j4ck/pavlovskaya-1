@@ -3,11 +3,12 @@
 {\
     for(int i=0; i<N; ++i){\
         for(int j=0; j<M; ++j)\
-            std::cout << m[i][j] << ' ';\
-        std::cout << std::endl;\
+            cout << m[i][j] << ' ';\
+        cout << endl;\
     }\
-    std::cout << std::endl;\
+    cout << endl;\
 }
+using namespace std;
 
 int main()
 {
@@ -22,8 +23,8 @@ int main()
     };
     print_matrix;
     int n;
-    std::cout << "Enter step-shifting: ";
-    std::cin >> n;
+    cout << "Enter step-shifting: ";
+    cin >> n;
     //shift right
     int*p, t;
     for(p=&m[0][0]; p!=&m[N-1][M]; p+=M)
