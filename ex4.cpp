@@ -3,7 +3,7 @@
 #include <iostream>
 #include <set>
 using namespace std;
-typedef double                 T_coord;
+typedef double T_coord;
 typedef complex<T_coord>  T_point;
 struct T_less_for_points : public binary_function<T_point, T_point, bool>
 {
